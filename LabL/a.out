@@ -1,0 +1,110 @@
+#! /usr/local/iverilog/bin/vvp
+:ivl_version "11.0 (devel)" "(s20150603-612-ga9388a89)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "vhdl_textio";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00000000003fe330 .scope module, "LabL" "LabL" 2 13;
+ .timescale 0 0;
+v0000000001f719c0_0 .var "a", 0 0;
+v0000000001f71a60_0 .var "b", 0 0;
+v0000000001f71b00_0 .var "c", 0 0;
+v0000000001f71ba0_0 .var "expect", 0 0;
+v0000000001f71c40_0 .var/i "i", 31 0;
+v0000000001f71ce0_0 .var/i "j", 31 0;
+v0000000001f72730_0 .var/i "k", 31 0;
+v0000000001f725f0_0 .net "z", 0 0, L_0000000001f72e00;  1 drivers
+S_0000000001f42ba0 .scope module, "mux" "yMux1" 2 19, 2 3 0, S_00000000003fe330;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "z";
+    .port_info 1 /INPUT 1 "a";
+    .port_info 2 /INPUT 1 "b";
+    .port_info 3 /INPUT 1 "c";
+L_0000000001f64800 .functor NOT 1, v0000000001f71b00_0, C4<0>, C4<0>, C4<0>;
+L_00000000003fc6e0 .functor AND 1, v0000000001f719c0_0, L_0000000001f64800, C4<1>, C4<1>;
+L_0000000001f72d90 .functor AND 1, v0000000001f71b00_0, v0000000001f71a60_0, C4<1>, C4<1>;
+L_0000000001f72e00 .functor OR 1, L_00000000003fc6e0, L_0000000001f72d90, C4<0>, C4<0>;
+v00000000003fe4c0_0 .net "a", 0 0, v0000000001f719c0_0;  1 drivers
+v00000000003fe560_0 .net "b", 0 0, v0000000001f71a60_0;  1 drivers
+v0000000001f42d30_0 .net "c", 0 0, v0000000001f71b00_0;  1 drivers
+v0000000001f42dd0_0 .net "lower", 0 0, L_0000000001f72d90;  1 drivers
+v0000000001f42e70_0 .net "notC", 0 0, L_0000000001f64800;  1 drivers
+v0000000001f42f10_0 .net "upper", 0 0, L_00000000003fc6e0;  1 drivers
+v0000000001f71920_0 .net "z", 0 0, L_0000000001f72e00;  alias, 1 drivers
+    .scope S_00000000003fe330;
+T_0 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0000000001f71c40_0, 0, 32;
+T_0.0 ;
+    %load/vec4 v0000000001f71c40_0;
+    %cmpi/s 2, 0, 32;
+    %jmp/0xz T_0.1, 5;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0000000001f71ce0_0, 0, 32;
+T_0.2 ;
+    %load/vec4 v0000000001f71ce0_0;
+    %cmpi/s 2, 0, 32;
+    %jmp/0xz T_0.3, 5;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0000000001f72730_0, 0, 32;
+T_0.4 ;
+    %load/vec4 v0000000001f72730_0;
+    %cmpi/s 2, 0, 32;
+    %jmp/0xz T_0.5, 5;
+    %load/vec4 v0000000001f71c40_0;
+    %pad/s 1;
+    %store/vec4 v0000000001f719c0_0, 0, 1;
+    %load/vec4 v0000000001f71ce0_0;
+    %pad/s 1;
+    %store/vec4 v0000000001f71a60_0, 0, 1;
+    %load/vec4 v0000000001f72730_0;
+    %pad/s 1;
+    %store/vec4 v0000000001f71b00_0, 0, 1;
+    %load/vec4 v0000000001f71b00_0;
+    %flag_set/vec4 8;
+    %jmp/0 T_0.6, 8;
+    %load/vec4 v0000000001f71a60_0;
+    %jmp/1 T_0.7, 8;
+T_0.6 ; End of true expr.
+    %load/vec4 v0000000001f719c0_0;
+    %jmp/0 T_0.7, 8;
+ ; End of false expr.
+    %blend;
+T_0.7;
+    %store/vec4 v0000000001f71ba0_0, 0, 1;
+    %delay 1, 0;
+    %load/vec4 v0000000001f725f0_0;
+    %load/vec4 v0000000001f71ba0_0;
+    %cmp/e;
+    %jmp/0xz  T_0.8, 6;
+    %vpi_call 2 38 "$display", "PASS: a=%b b=%b c=%b z=%b", v0000000001f719c0_0, v0000000001f71a60_0, v0000000001f71b00_0, v0000000001f725f0_0 {0 0 0};
+    %jmp T_0.9;
+T_0.8 ;
+    %vpi_call 2 40 "$display", "FAIL: a=%b b=%b c=%b z=%b", v0000000001f719c0_0, v0000000001f71a60_0, v0000000001f71b00_0, v0000000001f725f0_0 {0 0 0};
+T_0.9 ;
+    %load/vec4 v0000000001f72730_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0000000001f72730_0, 0, 32;
+    %jmp T_0.4;
+T_0.5 ;
+    %load/vec4 v0000000001f71ce0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0000000001f71ce0_0, 0, 32;
+    %jmp T_0.2;
+T_0.3 ;
+    %load/vec4 v0000000001f71c40_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0000000001f71c40_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %vpi_call 2 44 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "LabL1.v";
