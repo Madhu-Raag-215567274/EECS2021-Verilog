@@ -47,4 +47,4 @@ module LabL;
         $finish;
      end
 
-endmodule // LabL
+endmodule  // LabL
