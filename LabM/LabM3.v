@@ -5,7 +5,7 @@ module labM ;
    wire [31:0]  rd1, rd2;
    integer      i;
 
-  //  rf (rd1, rd2, rn1, rn2, wn, wd, clk, w);
+   rf (rd1, rd2, rn1, rn2, wn, wd, clk, w);
 
    initial
      begin

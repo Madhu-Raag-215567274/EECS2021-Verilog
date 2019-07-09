@@ -1,3 +1,19 @@
+module ff(q, d, clk, enable);
+/****************************
+An Edge-Triggerred Flip-flop 
+Written by H. Roumani, 2008.
+****************************/
+output q;
+input d, clk, enable;
+reg q;
+
+always @ (posedge clk)
+  if (enable) q <= d; 
+
+endmodule
+
+
+
 module yMux1(z, a, b, c);
    output z;
    input  a, b, c;
@@ -17,6 +33,19 @@ module yMux(z, a, b, c);
 
    yMux1 mine[SIZE-1:0](z, a, b, c);
 endmodule // yMux
+module ff(q, d, clk, enable);
+/****************************
+An Edge-Triggerred Flip-flop 
+Written by H. Roumani, 2008.
+****************************/
+output q;
+input d, clk, enable;
+reg q;
+
+always @ (posedge clk)
+  if (enable) q <= d; 
+
+endmodule
 
 module yMux4to1(z, a0, a1, a2, a3, c);
    parameter SIZE = 2;

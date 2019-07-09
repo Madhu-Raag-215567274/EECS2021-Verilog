@@ -1,4 +1,4 @@
-odule labM;
+module labM;
    reg [31:0] PCin;
    reg        RegDst, RegWrite, clk, ALUSrc, MemRead, MemWrite, Mem2Reg;
    reg [2:0]  op;
