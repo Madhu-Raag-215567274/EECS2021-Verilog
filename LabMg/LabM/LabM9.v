@@ -29,6 +29,7 @@ begin
             MemRead = 1;
 				MemWrite = 0;
 				Mem2Reg = 0;
+				$display("ADD");
             end
 
         if(ins[6:0] == 'h03) // I-type//lw
@@ -54,6 +55,7 @@ begin
             	MemRead = 0;
 				MemWrite = 0;
 				Mem2Reg = 0;
+				$display("Jal");
         end
         
         if(ins[6:0] == 'h6F) // UJ type
