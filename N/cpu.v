@@ -294,8 +294,8 @@ or(op[2],ALUop[0],andUP);
 or(op[1],notUP,notDOWN);
 endmodule // yC4
 
-module yChip(ins, rd2, wb, entryPoint, INT, clk);
-output [31:0] ins, rd2, wb;
+module yChip(ins, rd2,rd1,PC,wb,entryPoint, INT, clk);
+output [31:0] ins, rd2,rd1,PC,wb;
 input [31:0] entryPoint;
 input INT, clk;
 
@@ -318,9 +318,7 @@ yDM myDM(memOut, z, rd2, clk, MemRead, MemWrite);
 yWB myWB(wb, z, memOut, Mem2Reg);
 yPC myPC(PCin, PC, PCp4,INT,entryPoint,branchImm,jImm,zero,isbranch,isjump);
 yC1 myC1(isStype, isRtype, isItype, isLw, isjump, isbranch, ins[6:0]);
-yC2 myC2(RegWrite, ALUSrc, MemRead, MemWrite, Mem2Reg,
- isStype, isRtype, isItype, isLw, isjump, isbranch);
- 
+yC2 myC2(RegWrite, ALUSrc, MemRead, MemWrite, Mem2Reg,isStype, isRtype, isItype, isLw, isjump, isbranch); 
 yC3 myC3(ALUop, isRtype, isbranch);
 assign funct3=ins[14:12];
 yC4 myC4(op, ALUop, funct3);

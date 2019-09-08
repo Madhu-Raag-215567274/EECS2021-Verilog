@@ -34,8 +34,20 @@ begin
 				MemWrite = 0;
 				Mem2Reg =0;
 				op=3'b001;
+		end			
+
+      else if(ins[14:12] == 3'b111) //R-typeAND type
+            begin
+            RegDst = 0; RegWrite =1; ALUSrc = 0;
+            MemRead =0;
+				MemWrite = 0;
+				Mem2Reg =0;
+				op=3'b001;
+					$display("AND");
+			
+		end		
 				
-            end
+     
         else if(ins[6:0] == 7'h33 && ins[14:12] == 3'b000)  // add RType
         	begin
             RegDst = 0; RegWrite = 1; ALUSrc = 0;
@@ -43,6 +55,7 @@ begin
 				MemWrite = 0;
 				Mem2Reg = 0;
 				op=3'b010;
+				$display("ADD");
             end
 
         if(ins[6:0] == 7'h03) // I-type//lw
@@ -76,6 +89,7 @@ begin
             MemRead = 0;
 				MemWrite = 0;
 				Mem2Reg = 0;
+				$display("Jump Instruction= %h", PCin);
         end
 
         if(ins[6:0] == 7'h23) // S type
